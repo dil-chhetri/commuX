@@ -12,13 +12,13 @@ class ChatController extends Controller
 {
     //
     public function index($id){
-        $chats = Chat::where('group_id','=',$id)->get();
+        
         $groups = DB::table('members')->leftJoin('groups','groups.group_id','=','members.group_id')->where('members.user_id','=', session('user_id'))->get();
         $members = DB::table('members')
         ->leftJoin('users', 'users.user_id', '=', 'members.user_id')
         ->where('members.group_id', '=', $id)
         ->select('users.name', 'users.email')->get(); 
-        $data = compact('groups','chats','members');
+        $data = compact('groups','members');
      
         return view('frontend.main.group')->with($data);
     }
@@ -29,6 +29,13 @@ class ChatController extends Controller
         $chat->group_id = $request->input('group_id');
         $chat->message = $request->input('message');
         $chat -> save();
-        return redirect()->back();
+        return response()->json([]);
     }
+
+    public function fetch($id){
+        $chats = Chat::where('group_id','=',$id)->get();
+        return response()->json(['messages'=>$chats]);
+    }
+
+
 }

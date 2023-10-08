@@ -46,3 +46,4 @@ Route::get('/leave-group/{id}',[GroupController::class, 'leave'])->name('group.l
 
 Route::get('/community/{id}',[ChatController::class, 'index'])->name('group.chat');
 Route::post('/message-sent',[ChatController::class,'store'])->name('message.sent');
+Route::get('/chat/{gid}',[ChatController::class, 'fetch'])->name('chat');

@@ -25,24 +25,12 @@
     
         <div class="messages p-3" style="max-height:75vh;overflow:auto;" id="messageContainer" >
 
-            @foreach($chats as $chat)
-            @if($chat->user_id==session('user_id'))
-            <div class="message bg-dark px-2 py-1 mb-3  mt-3 rounded" style="max-width:75%;width:max-content;margin-left:auto;">
-                <p class="text-center text-white">{{$chat->message}}</p>
-             
-
-            </div>
+          
+            
 
 
-            @else
-            <div class="message bg-secondary px-2 py-1  rounded mb-3" style="width:max-content;max-width:75%;">
-                <p class="text-center text-white">{{$chat->message}}</p>
+            
            
-
-            </div>
-
-            @endif
-            @endforeach
         </div>
         {!!Form::open([
     'url' => url('/message-sent'),
