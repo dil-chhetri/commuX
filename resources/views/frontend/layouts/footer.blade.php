@@ -26,7 +26,7 @@
             var id = {{request('id')}};
             $.ajax({
             type: 'GET',
-            url: '/chat/'+id, // Replace with your actual server endpoint
+            url: '/chat/'+id, 
             success: function (data) {
                 $('#messageContainer').empty();
                 $.each(data.messages, function(key,item){
@@ -50,7 +50,7 @@
             var id = {{request('id')}};
             $.ajax({
             type: 'GET',
-            url: '/chat/'+id, // Replace with your actual server endpoint
+            url: '/chat/'+id, 
             success: function (data) {
                 $('#messageContainer').empty();
                 $.each(data.messages, function(key,item){
