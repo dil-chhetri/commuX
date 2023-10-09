@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\Member;
-
+use App\Models\User;
 use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,7 +33,7 @@ class ChatController extends Controller
     }
 
     public function fetch($id){
-        $chats = Chat::where('group_id','=',$id)->get();
+        $chats = DB::table('chats')->leftJoin('users','users.user_id','=','chats.user_id')->where('group_id','=',$id)->get();
         return response()->json(['messages'=>$chats]);
     }
 

@@ -1,7 +1,7 @@
 
 
 <script src="{{url('frontend/js/script.js')}}"></script>
-
+<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> -->
 <script>
     $(document).ready(function(){
         getMessage();
@@ -23,7 +23,7 @@
 
         });
         function getMessage(){
-            var id = {{request('id')}};
+            var id = {{request('id')}}
             $.ajax({
             type: 'GET',
             url: '/chat/'+id, 
@@ -47,7 +47,7 @@
 
 
             function fetchData() {
-            var id = {{request('id')}};
+            var id = {{request('id')}}
             $.ajax({
             type: 'GET',
             url: '/chat/'+id, 
@@ -56,9 +56,11 @@
                 $.each(data.messages, function(key,item){
                     var messageClass = item.user_id === {{session('user_id')}}? 'bg-dark': 'bg-secondary';
                     var messageStyle = item.user_id === {{session('user_id')}}? 'margin-left:auto;': '';
-                    $('#messageContainer').append('<div class="message '+messageClass+' px-2 py-1 mb-3  mt-3 rounded " style="width:max-content;'+messageStyle+'max-width:75%;">\
+                    var imageClass = item.user_id === {{session('user_id')}}?'position-absolute end-0': 'position-absolute start-10';
+                    $('#messageContainer').append('<div class"position-relative" style="width:max-content;'+messageStyle+'max-width:75%;">\
+                    <div class="message '+messageClass+' px-2 py-1 mb-3  mt-3 rounded " >\
                         <p class="text-center text-white">'+item.message+'</p>\
-                        </div>');
+                        </div></div>');
                 });
             },
             error: function (xhr, status, error) {
