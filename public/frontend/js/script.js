@@ -56,4 +56,14 @@ function hideMenu(){
 }
 
 
-
+function userMenu(){
+  
+  document.getElementById('userMenu').classList.remove('d-none');
+ 
+}
+document.addEventListener('mouseup', function(e) {
+  var container = document.getElementById('userMenu');
+  if (!container.contains(e.target)) {
+    container.classList.add('d-none');
+  }
+});

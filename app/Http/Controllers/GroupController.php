@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Chat;
+use App\Models\User;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Models\Group;
@@ -14,6 +15,7 @@ class GroupController extends Controller
     //
     public function index(){
         $groups = DB::table('members')->leftJoin('groups','groups.group_id','=','members.group_id')->where('members.user_id','=', session('user_id'))->get();
+        
         $data = compact('groups');
         return view('frontend.main.index')->with($data);
         

@@ -26,7 +26,8 @@ class UserController extends Controller
         ];
         if(Auth::attempt($credentials)){
             $user_id = Auth::id('user_id');
-            $request->session()->put('user_id', $user_id);
+            $user = Auth::user();
+            $request->session()->put(['user_id'=>$user_id,'user'=>$user]);
             return redirect('/');
             
         }else{
